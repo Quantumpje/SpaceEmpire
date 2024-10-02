@@ -1,5 +1,6 @@
 var http = require('http')
 var readline = require('readline')
+var fs = require('fs')
 
 
 
@@ -30,6 +31,15 @@ function commandloop(i) {
 			}
 			else if (command == 'tick') {
 				console.log(`Current tick is ${data.tick}.`)
+			}
+			else if (command == 'save') {
+				fs.writeFile('data.txt', content, err => {
+					if (err) {
+						console.error(err);
+					} else {
+						console.log('success')
+					}
+				})
 			}
 			else {
 				console.log('Command not recognised!')
