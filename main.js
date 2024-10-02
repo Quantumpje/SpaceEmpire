@@ -33,7 +33,7 @@ function commandloop(i) {
 				console.log(`Current tick is ${data.tick}.`)
 			}
 			else if (command == 'save') {
-				fs.writeFile('data.txt', data.tick, err => {
+				fs.writeFile('data.txt', data.tick.toString(), err => {
 					if (err) {
 						console.error(err);
 					} else {
