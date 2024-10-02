@@ -4,12 +4,12 @@ var readline = require('readline')
 
 
 let data = {
-	n: 0
+	tick: 0
 }
 
 function loop(i) {
 	setTimeout(() => {
-		data.n = i
+		data.tick = i
 
 		loop(++i)
 	}, 2000)
@@ -26,10 +26,10 @@ function commandloop(i) {
 	setTimeout(() => {
 		rl.question(`Enter command: `, command => {
 			if (command == 'help') {
-				console.log('Command list: ( help ), ( n ).')
+				console.log('Command list: ( help ), ( tick ).')
 			}
-			else if (command == 'n') {
-				console.log(`Value of n is currently ${data.n}.`)
+			else if (command == 'tick') {
+				console.log(`Current tick is ${data.tick}.`)
 			}
 			else {
 				console.log('Command not recognised!')
@@ -47,7 +47,7 @@ commandloop(0)
 const server = http.createServer((req, res) => {
 	res.writeHead(200, { 'Content-Type': 'text/plain' })
 
-	res.end('n: ' + data.n.toString())
+	res.end('tick: ' + data.tick.toString())
 })
 
 server.listen(3000, '127.0.0.1', () => {
