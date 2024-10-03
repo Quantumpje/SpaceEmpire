@@ -4,7 +4,7 @@ var fs = require('fs')
 
 
 
-let data = {
+const data = {
 	tick: 0
 }
 
@@ -57,7 +57,7 @@ commandloop(0)
 const server = http.createServer((req, res) => {
 	res.writeHead(200, { 'Content-Type': 'text/plain' })
 
-	res.end('tick: ' + data.tick.toString())
+	res.end('tick: ' + JSON.stringify(data))
 })
 
 server.listen(3000, '127.0.0.1', () => {
