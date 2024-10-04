@@ -54,7 +54,7 @@ function commandloop(i) {
 			}
 			else if (command == 'tickspeed') {
 				rl.question(`Enter new tickspeed: `, speed => {
-					data.tickspeed = speed
+					data.tickspeed = Number(speed)
 					console.log('New speed is ' + speed)
 
 					commandloop(++i)
