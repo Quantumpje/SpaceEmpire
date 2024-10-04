@@ -1,1 +1,1 @@
-{"tick":0}
+{"tickspeed":1000,"tick":0}
