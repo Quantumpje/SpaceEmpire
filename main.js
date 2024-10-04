@@ -67,7 +67,7 @@ commandloop(0)
 const server = http.createServer((req, res) => {
 	res.writeHead(200, { 'Content-Type': 'text/plain' })
 
-	res.end('data: ' + JSON.stringify(data))
+	res.end(JSON.stringify(data))
 })
 
 server.listen(3000, '127.0.0.1', () => {
