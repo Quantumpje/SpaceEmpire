@@ -5,7 +5,8 @@ var fs = require('fs')
 
 
 var data = {
-	tick: 0
+	tickspeed: 1000,
+	tick: 0,
 }
 
 function loop(i) {
@@ -13,7 +14,7 @@ function loop(i) {
 		data.tick += 1
 
 		loop(++i)
-	}, 2000)
+	}, data.tickspeed)
 }
 
 
@@ -27,10 +28,10 @@ function commandloop(i) {
 	setTimeout(() => {
 		rl.question(`Enter command: `, command => {
 			if (command == 'help') {
-				console.log('Command list: ( help ), ( tick ), ( save ), ( load ).')
+				console.log('Command list: ( help ), ( data ), ( save ), ( load ), ( tickspeed ).')
 			}
-			else if (command == 'tick') {
-				console.log(`Current tick is ${data.tick}.`)
+			else if (command == 'data') {
+				console.log(`Current data is ${JSON.stringify(data)}.`)
 			}
 			else if (command == 'save') {
 				let savedata = JSON.stringify(data)
@@ -50,6 +51,14 @@ function commandloop(i) {
 					console.log('successfully read ' + loaddata)
 					data = JSON.parse(loaddata)
 				  })
+			}
+			else if (command == 'tickspeed') {
+				rl.question(`Enter new tickspeed: `, speed => {
+					data.tickspeed = speed
+					console.log('New speed is ' + speed)
+
+					commandloop(++i)
+				})
 			}
 			else {
 				console.log('Command not recognised!')
