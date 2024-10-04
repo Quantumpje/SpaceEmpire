@@ -4,7 +4,7 @@ var fs = require('fs')
 
 
 
-let data = {
+var data = {
 	tick: 0
 }
 
@@ -27,7 +27,7 @@ function commandloop(i) {
 	setTimeout(() => {
 		rl.question(`Enter command: `, command => {
 			if (command == 'help') {
-				console.log('Command list: ( help ), ( tick ).')
+				console.log('Command list: ( help ), ( tick ), ( save ).')
 			}
 			else if (command == 'tick') {
 				console.log(`Current tick is ${data.tick}.`)
@@ -57,7 +57,7 @@ commandloop(0)
 const server = http.createServer((req, res) => {
 	res.writeHead(200, { 'Content-Type': 'text/plain' })
 
-	res.end('tick: ' + data.tick.toString())
+	res.end('data: ' + JSON.stringify(data))
 })
 
 server.listen(3000, '127.0.0.1', () => {
