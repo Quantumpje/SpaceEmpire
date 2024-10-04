@@ -27,7 +27,7 @@ function commandloop(i) {
 	setTimeout(() => {
 		rl.question(`Enter command: `, command => {
 			if (command == 'help') {
-				console.log('Command list: ( help ), ( tick ), ( save ).')
+				console.log('Command list: ( help ), ( tick ), ( save ), ( load ).')
 			}
 			else if (command == 'tick') {
 				console.log(`Current tick is ${data.tick}.`)
