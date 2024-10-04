@@ -10,7 +10,7 @@ var data = {
 
 function loop(i) {
 	setTimeout(() => {
-		data.tick = i
+		data.tick += 1
 
 		loop(++i)
 	}, 2000)
@@ -33,13 +33,23 @@ function commandloop(i) {
 				console.log(`Current tick is ${data.tick}.`)
 			}
 			else if (command == 'save') {
-				fs.writeFile('./data.txt', JSON.stringify(data), err => {
+				let savedata = JSON.stringify(data)
+				fs.writeFile('./data.txt', savedata, err => {
 					if (err) {
-						console.error(err);
+						console.error(err)
 					} else {
-						console.log('success')
+						console.log('successfully saved ' + savedata)
 					}
 				})
+			}
+			else if (command == 'load') {
+				fs.readFile('./data.txt', 'utf8', (err, loaddata) => {
+					if (err) {
+					  console.error(err)
+					}
+					console.log('successfully read ' + loaddata)
+					data = JSON.parse(loaddata)
+				  })
 			}
 			else {
 				console.log('Command not recognised!')
